@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_31_030909) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_024834) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,56 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_030909) do
     t.datetime "updated_at", null: false
     t.index ["jti"], name: "index_allowlisted_jwts_on_jti", unique: true
     t.index ["user_id"], name: "index_allowlisted_jwts_on_user_id"
+  end
+
+  create_table "characters", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "image"
+    t.string "name"
+    t.integer "age"
+    t.integer "weight"
+    t.string "history"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_characters_on_user_id"
+  end
+
+  create_table "genres", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_genres_on_user_id"
+  end
+
+  create_table "movie_characters", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "movie_id", null: false
+    t.uuid "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_movie_characters_on_character_id"
+    t.index ["movie_id"], name: "index_movie_characters_on_movie_id"
+  end
+
+  create_table "movie_genres", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "movie_id", null: false
+    t.uuid "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_movie_genres_on_genre_id"
+    t.index ["movie_id"], name: "index_movie_genres_on_movie_id"
+  end
+
+  create_table "movies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "image"
+    t.string "title"
+    t.datetime "date"
+    t.integer "qualification"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -40,4 +90,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_030909) do
   end
 
   add_foreign_key "allowlisted_jwts", "users", on_delete: :cascade
+  add_foreign_key "characters", "users"
+  add_foreign_key "genres", "users"
+  add_foreign_key "movie_characters", "characters"
+  add_foreign_key "movie_characters", "movies"
+  add_foreign_key "movie_genres", "genres"
+  add_foreign_key "movie_genres", "movies"
+  add_foreign_key "movies", "users"
 end

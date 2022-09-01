@@ -1,0 +1,40 @@
+# frozen_string_literal: true
+
+class Character < ApplicationRecord
+  belongs_to :user
+
+  has_many :movie_characters
+  has_many :movies, through: :movie_characters
+
+  validates :image,
+            presence: { message: 'Required' },
+            format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
+                      message: 'Invalid URL' }
+
+  validates :name,
+            presence: { message: 'Required' },
+            uniqueness: { message: 'Has already been taken' },
+            length: { minimum: 4,
+                      maximum: 20,
+                      message: 'Minimum 4 and maximum 20 characters' }
+
+  validates :age,
+            numericality: {
+              greater_than: 0,
+              less_than_or_equal_to: 999,
+              message: 'Invalid age must be between 1 and 3 digits'
+            }
+
+  validates :weight,
+            numericality: {
+              greater_than: 0,
+              less_than_or_equal_to: 999,
+              message: 'Invalid weight must be between 1 and 3 digits'
+            }
+
+  validates :history,
+            presence: { message: 'Required' },
+            length: { minimum: 20,
+                      maximum: 2000,
+                      message: 'Minimum 20 and maximum 2000 characters' }
+end
