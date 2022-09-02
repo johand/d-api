@@ -63,3 +63,30 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              blank: "You must add a username"
+              taken: "This username has already exists"
+              invalid: "Invalid username"
+              too_short: "Must be minimum %{count} characters"
+              too_long: "Must be maximum %{count} characters"
+            email:
+              blank: "You must add a email"
+              taken: "This email has already exists"
+              invalid: "Invalid email"
+            password:
+              blank: "Required"
+              invalid: "Invalid password"
+              confirmation: "The passwords do not match"
+              too_short: "Minimum %{count} characters"
+              too_long: "Maximum %{count} characters"
+            password_confirmation:
+              blank: "Required"
+              confirmation: "The passwords do not match"
+            current_password:
+              blank: "Required"
+              invalid: "Invalid password"
