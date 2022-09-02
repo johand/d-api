@@ -14,9 +14,9 @@ class Character < ApplicationRecord
   validates :name,
             presence: { message: 'Required' },
             uniqueness: { message: 'Has already been taken' },
-            length: { minimum: 4,
+            length: { minimum: 3,
                       maximum: 20,
-                      message: 'Minimum 4 and maximum 20 characters' }
+                      message: 'Minimum 3 and maximum 20 characters' }
 
   validates :age,
             numericality: {

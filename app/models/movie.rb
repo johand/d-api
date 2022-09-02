@@ -18,8 +18,8 @@ class Movie < ApplicationRecord
             presence: { message: 'Required' },
             uniqueness: { message: 'Has already been taken' },
             length: { minimum: 4,
-                      maximum: 20,
-                      message: 'Minimum 4 and maximum 20 characters' }
+                      maximum: 50,
+                      message: 'Minimum 4 and maximum 50 characters' }
 
   validates :date, presence: { message: 'Required' }
   validates :qualification,
