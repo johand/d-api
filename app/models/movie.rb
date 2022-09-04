@@ -3,10 +3,10 @@
 class Movie < ApplicationRecord
   belongs_to :user
 
-  has_many :movie_characters
+  has_many :movie_characters, dependent: :destroy
   has_many :characters, through: :movie_characters
 
-  has_many :movie_genres
+  has_many :movie_genres, dependent: :destroy
   has_many :genres, through: :movie_genres
 
   validates :image,
