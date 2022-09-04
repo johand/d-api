@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :characters, only: %i[index show edit update destroy]
+      post 'characters/create', to: 'characters#create'
+    end
+  end
+
   devise_for :users,
              only: %i[sessions registrations],
              path: 'api/v1/users',

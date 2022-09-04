@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RequestMacros
+module RequestHelper
   def login_user
     before(:each) do
       @user = create(:user)

@@ -8,7 +8,8 @@ require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'support/factory_bot'
-require 'support/request_macros'
+require 'support/request_helper'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -66,20 +67,14 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include Devise::Test::IntegrationHelpers, type: :request
-  config.extend RequestMacros, type: :request
+  config.extend RequestHelper, type: :request
   DatabaseCleaner.allow_remote_database_url = true
 
   config.before(:each) do
     DatabaseCleaner.clean_with(:truncation, pre_count: true, cache_tables: true)
-    FactoryBot.lint
-  end
-
-  config.before(:each) do
     DatabaseCleaner.strategy = :transaction
-  end
-
-  config.before(:each) do
     DatabaseCleaner.start
+    FactoryBot.lint
   end
 
   config.append_after(:each) do
