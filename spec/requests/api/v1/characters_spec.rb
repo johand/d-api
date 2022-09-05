@@ -13,7 +13,7 @@ RSpec.describe 'Api::V1::Characters', type: :request do
     end
   end
 
-  describe 'POST /api/v1/characters/create' do
+  describe 'POST /create' do
     let(:character) { build(:character) }
 
     it 'returns http success' do
@@ -28,7 +28,6 @@ RSpec.describe 'Api::V1::Characters', type: :request do
       }
 
       expect(response).to have_http_status(:success)
-
       json = JSON.parse(response.body).deep_symbolize_keys
       expect(json[:response][:message]).to eq('Character was successfully created.')
     end
@@ -64,6 +63,7 @@ RSpec.describe 'Api::V1::Characters', type: :request do
       expect(response).to have_http_status(:success)
       json = JSON.parse(response.body).deep_symbolize_keys
       expect(json[:response][:character][:name]).to eq('Fooman')
+      expect(json[:response][:message]).to eq('Character was successfully updated.')
     end
 
     it 'does not update a character on invalid object' do
@@ -92,8 +92,8 @@ RSpec.describe 'Api::V1::Characters', type: :request do
   describe 'DELETE /destroy' do
     it 'does delete a character with success' do
       delete "/api/v1/characters/#{character.id}"
-      expect(response).to have_http_status(:success)
 
+      expect(response).to have_http_status(:success)
       json = JSON.parse(response.body).deep_symbolize_keys
       expect(json[:response][:message]).to eq('Character deleted')
     end
