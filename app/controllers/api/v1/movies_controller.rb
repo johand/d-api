@@ -3,12 +3,13 @@
 module Api
   module V1
     class MoviesController < ApplicationController
+      include Paginate
       before_action :authenticate_user!, except: %i[index show]
       before_action :set_movie, only: %i[show edit update destroy]
 
       def index
-        movies = Movie.select(:id, :image, :title, :date)
-        render json: { status: 200, movies: }
+        movies = Movie.select(:id, :image, :title, :date).page(params[:page] || 1).per(8)
+        pagination(movies)
       end
 
       def new

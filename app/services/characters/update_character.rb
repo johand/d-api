@@ -13,7 +13,8 @@ module Characters
 
     def call
       if character.update(character_params)
-        Result.new(success: true, character:, error: nil, message: 'Character was successfully updated.')
+        Result.new(success: true, character:, error: nil,
+                   message: 'Character was successfully updated.')
       else
         Result.new(success: false, character:, error: character.errors)
       end

@@ -3,12 +3,13 @@
 module Api
   module V1
     class GenresController < ApplicationController
+      include Paginate
       before_action :authenticate_user!, except: %i[index show]
       before_action :set_genre, only: %i[show edit update destroy]
 
       def index
-        genres = Genre.select(:id, :image, :name)
-        render json: { status: 200, genres: }
+        genres = Genre.select(:id, :image, :name).page(params[:page] || 1).per(8)
+        pagination(genres)
       end
 
       def new

@@ -3,12 +3,13 @@
 module Api
   module V1
     class CharactersController < ApplicationController
+      include Paginate
       before_action :authenticate_user!, except: %i[index show]
       before_action :set_character, only: %i[show edit update destroy]
 
       def index
-        @characters = Character.select(:id, :image, :name)
-        render json: { status: 200, characters: @characters }
+        characters = Character.select(:id, :image, :name).page(params[:page] || 1).per(8)
+        pagination(characters)
       end
 
       def new
@@ -31,7 +32,7 @@ module Api
         if response.success
           render json: { status: 200, response: }
         else
-          render json: { status: :unprocessable_entity, message: response.error }
+          render json: { status: :unprocessable_entity, errors: response.error }
         end
       end
 
