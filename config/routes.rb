@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
       resources :movies, only: %i[index show edit update destroy]
       post 'movies/create', to: 'movies#create'
+
+      resources :genres, only: %i[index show edit update destroy]
+      post 'genres/create', to: 'genres#create'
     end
   end
 
