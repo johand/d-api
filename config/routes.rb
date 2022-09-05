@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :characters, only: %i[index show edit update destroy]
       post 'characters/create', to: 'characters#create'
+
+      resources :movies, only: %i[index show edit update destroy]
+      post 'movies/create', to: 'movies#create'
     end
   end
 
