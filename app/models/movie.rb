@@ -28,4 +28,8 @@ class Movie < ApplicationRecord
               less_than_or_equal_to: 5,
               message: 'Invalid qualification must be between 1 and 5 points'
             }
+
+  scope :by_title, ->(title) { where('lower(title) LIKE ?', "%#{sanitize_sql_like(title.downcase)}%") }
+  scope :by_genre, ->(genre) { joins(:genres).where('genres.name = ?', genre) }
+  scope :by_order, ->(order) { order(date: order.to_sym) }
 end

@@ -6,9 +6,14 @@ module Api
       include Paginate
       before_action :authenticate_user!, except: %i[index show]
       before_action :set_movie, only: %i[show edit update destroy]
+      has_scope :by_title, as: :title
+      has_scope :by_genre, as: :genre
+      has_scope :by_order, as: :order
 
       def index
-        movies = Movie.select(:id, :image, :title, :date).page(params[:page] || 1).per(8)
+        movies = apply_scopes(Movie).select(:id, :image, :title, :date)
+                                    .page(params[:page] || 1)
+                                    .per(8)
         pagination(movies)
       end
 

@@ -6,9 +6,15 @@ module Api
       include Paginate
       before_action :authenticate_user!, except: %i[index show]
       before_action :set_character, only: %i[show edit update destroy]
+      has_scope :by_name, as: :name
+      has_scope :by_age, as: :age
+      has_scope :by_weight, as: :weight
+      has_scope :by_movie, as: :movies
 
       def index
-        characters = Character.select(:id, :image, :name).page(params[:page] || 1).per(8)
+        characters = apply_scopes(Character).select(:id, :image, :name)
+                                            .page(params[:page] || 1)
+                                            .per(8)
         pagination(characters)
       end
 
