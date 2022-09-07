@@ -19,7 +19,8 @@ class User < ApplicationRecord
                       maximum: 20,
                       message: 'Minimum 5 and maximum 20 characters' }
 
-  validates :password, presence: true, confirmation: true
+  validates :password, confirmation: true
+  validates :password_confirmation, presence: true, on: :create
   validates :email, uniqueness: true,
                     format: { with: /\A([\w.%+\-]+)@([\w\-]+\.)+(\w{2,})\z/i }
 end
