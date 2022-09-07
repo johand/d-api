@@ -109,6 +109,9 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    has_scope (0.8.0)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     immutable-struct (2.4.1)
@@ -246,6 +249,7 @@ DEPENDENCIES
   devise-jwt
   factory_bot_rails
   faker
+  has_scope
   immutable-struct
   kaminari
   pg (~> 1.1)
