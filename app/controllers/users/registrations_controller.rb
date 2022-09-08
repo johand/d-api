@@ -11,12 +11,14 @@ module Users
     # end
 
     # POST /resource
-    # def create
-    #   super
-    # end
+    def create
+      super
+      send_welcome_email
+    end
 
     # GET /resource/edit
     def edit
+      super
       render json: { user: resource }
     end
 
@@ -89,6 +91,10 @@ module Users
 
     def resource_errors(resource)
       render json: { status: :unprocessable_entity, errors: resource.errors }
+    end
+
+    def send_welcome_email
+      WelcomeEmailMailer.welcome_email(resource).deliver_later
     end
   end
 end
