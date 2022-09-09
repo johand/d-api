@@ -4,6 +4,7 @@ module Api
   module V1
     class MoviesController < ApplicationController
       include Paginate
+      load_and_authorize_resource
       before_action :authenticate_user!, except: %i[index show]
       before_action :set_movie, only: %i[show edit update destroy]
       has_scope :by_title, as: :title

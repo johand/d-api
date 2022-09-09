@@ -4,6 +4,7 @@ module Api
   module V1
     class GenresController < ApplicationController
       include Paginate
+      load_and_authorize_resource
       before_action :authenticate_user!, except: %i[index show]
       before_action :set_genre, only: %i[show edit update destroy]
 

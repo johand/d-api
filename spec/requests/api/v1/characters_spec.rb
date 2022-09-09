@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Characters', type: :request do
-  let(:character) { create(:character) }
-  login_user
+  let(:user) { create(:user, username: 'zxcvbn', email: 'qwerty@qwerty.com') }
+  let(:character) { create(:character, user_id: user.id) }
 
   describe 'GET /index' do
     it 'returns http success' do
@@ -17,13 +17,16 @@ RSpec.describe 'Api::V1::Characters', type: :request do
     let(:character) { build(:character) }
 
     it 'returns http success' do
+      sign_in user
+
       post '/api/v1/characters/create', params: {
         character: {
           image: character.image,
           name: character.name,
           age: character.age,
           weight: character.weight,
-          history: character.history
+          history: character.history,
+          user_id: user.id
         }
       }
 
@@ -33,13 +36,16 @@ RSpec.describe 'Api::V1::Characters', type: :request do
     end
 
     it 'does not create a character on invalid object' do
+      sign_in user
+
       post '/api/v1/characters/create', params: {
         character: {
           image: character.image,
           name: nil,
           age: character.age,
           weight: character.weight,
-          history: character.history
+          history: character.history,
+          user_id: user.id
         }
       }
 
@@ -50,13 +56,16 @@ RSpec.describe 'Api::V1::Characters', type: :request do
 
   describe 'PUT /update' do
     it 'returns http success' do
+      sign_in user
+
       put "/api/v1/characters/#{character.id}", params: {
         character: {
           image: character.image,
           name: 'Fooman',
           age: character.age,
           weight: character.weight,
-          history: character.history
+          history: character.history,
+          user_id: user.id
         }
       }
 
@@ -67,13 +76,16 @@ RSpec.describe 'Api::V1::Characters', type: :request do
     end
 
     it 'does not update a character on invalid object' do
+      sign_in user
+
       put "/api/v1/characters/#{character.id}", params: {
         character: {
           image: character.image,
           name: nil,
           age: character.age,
           weight: character.weight,
-          history: character.history
+          history: character.history,
+          user_id: user.id
         }
       }
 
@@ -91,6 +103,8 @@ RSpec.describe 'Api::V1::Characters', type: :request do
 
   describe 'DELETE /destroy' do
     it 'does delete a character with success' do
+      sign_in user
+
       delete "/api/v1/characters/#{character.id}"
 
       expect(response).to have_http_status(:success)

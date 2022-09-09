@@ -30,4 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  unauthorized:
+    manage:
+      all: "Not authorized to %{action} %{subject}."
+    update:
+      movie: "You're not allowed to %{action} this %{subject}"
+      character: "You're not allowed to %{action} this %{subject}"
+      genre: "You're not allowed to %{action} this %{subject}"
+    destroy:
+      movie: "You're not allowed to %{action} this %{subject}"
+      character: "You're not allowed to %{action} this %{subject}"
+      genre: "You're not allowed to %{action} this %{subject}"

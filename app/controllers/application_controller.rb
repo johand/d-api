@@ -6,6 +6,10 @@ class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
+  rescue_from CanCan::AccessDenied do |e|
+    render json: { status: :unprocessable_entity, message: e.message }
+  end
+
   protected
 
   def record_not_found(exception)
