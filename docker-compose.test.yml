@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:14.5-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    env_file:
+      - .env
+  redis:
+    image: redis:7.0.4-alpine
+    volumes:
+      - redis:/data
+  api:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - .:/d-api
+    environment:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${DB_NAME}_test
+      REDIS_URL: ${REDIS_HOST}://${REDIS_HOST}:${REDIS_PORT}
+volumes:
+  pgdata:
+  redis:

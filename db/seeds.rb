@@ -21,118 +21,310 @@ User.create!([{
                 password_confirmation: '12345678'
               }])
 
-Genre.create!(name: 'action',
-              image: Faker::LoremFlickr.image,
-              user_id: User.first.id)
+Genre.create!([{
+                name: 'action',
+                image: Faker::LoremFlickr.image,
+                user_id: User.first.id
+              },
+               {
+                 name: 'fantasy',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.first.id
+               },
+               {
+                 name: 'adventure',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.first.id
+               },
+               {
+                 name: 'science fiction',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.first.id
+               },
+               {
+                 name: 'terror',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.first.id
+               },
+               {
+                 name: 'zombie',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.first.id
+               },
+               {
+                 name: 'thriller',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.first.id
+               },
+               {
+                 name: 'mistery',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.first.id
+               },
+               {
+                 name: 'superheros',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.last.id
+               },
+               {
+                 name: 'drama',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.last.id
+               },
+               {
+                 name: 'post apocalyptic',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.last.id
+               },
+               {
+                 name: 'suspense',
+                 image: Faker::LoremFlickr.image,
+                 user_id: User.last.id
+               }])
 
-Genre.create!(name: 'fantasy',
-              image: Faker::LoremFlickr.image,
-              user_id: User.first.id)
-
-Genre.create!(name: 'adventure',
-              image: Faker::LoremFlickr.image,
-              user_id: User.first.id)
-
-Genre.create!(name: 'science fiction',
-              image: Faker::LoremFlickr.image,
-              user_id: User.first.id)
-
-Genre.create!(name: 'comedy',
-              image: Faker::LoremFlickr.image,
-              user_id: User.first.id)
-
-Genre.create!(name: 'terror',
-              image: Faker::LoremFlickr.image,
-              user_id: User.first.id)
-
-Genre.create!(name: 'thriller',
-              image: Faker::LoremFlickr.image,
-              user_id: User.first.id)
-
-Genre.create!(name: 'crime',
-              image: Faker::LoremFlickr.image,
-              user_id: User.first.id)
-
-Genre.create!(name: 'superheros',
-              image: Faker::LoremFlickr.image,
-              user_id: User.last.id)
-
-Genre.create!(name: 'war',
-              image: Faker::LoremFlickr.image,
-              user_id: User.last.id)
-
-Genre.create!(name: 'drama',
-              image: Faker::LoremFlickr.image,
-              user_id: User.last.id)
-
-Genre.create!(name: 'sports',
-              image: Faker::LoremFlickr.image,
-              user_id: User.last.id)
-
-Genre.create!(name: 'romantic',
-              image: Faker::LoremFlickr.image,
-              user_id: User.last.id)
-
-Genre.create!(name: 'suspense',
-              image: Faker::LoremFlickr.image,
-              user_id: User.last.id)
-
-Genre.create!(name: 'supernatural',
-              image: Faker::LoremFlickr.image,
-              user_id: User.last.id)
-
-Genre.create!(name: 'martial arts',
-              image: Faker::LoremFlickr.image,
-              user_id: User.last.id)
-
-lodr = Movie.create!(
-  image: 'https://static.wikia.nocookie.net/lotr/images/7/74/LOTRFOTRmovie.jpg',
-  title: 'Lord of the rings',
-  date: DateTime.civil(2001, 12, 19, 0, 0, 0, 0),
+avengers = Movie.create!(
+  image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/d/d0/Theavengersnewposter.jpg',
+  title: 'The Avengers',
+  date: DateTime.new(2012, 4, 27, 0, 0, 0, 0),
   qualification: 4,
   user_id: User.first.id
 )
 
-lodr.genres << Genre.find_by(name: 'action')
-lodr.genres << Genre.find_by(name: 'fantasy')
-lodr.genres << Genre.find_by(name: 'adventure')
+avengers.genres << Genre.find_by(name: 'action')
+avengers.genres << Genre.find_by(name: 'fantasy')
+avengers.genres << Genre.find_by(name: 'adventure')
+avengers.genres << Genre.find_by(name: 'superheros')
+avengers.genres << Genre.find_by(name: 'adventure')
 
-lodr.characters.create!(
-  image: 'https://static.wikia.nocookie.net/lotr/images/1/1a/FotR_-_Elijah_Wood_as_Frodo.png',
-  name: 'Frodo Baggins',
-  age: 30,
-  weight: 72,
-  history: "Son of Drogo Baggins, was aa hobbit of the Shire in the late Third Age.\
-He was a Ring-bearer, best friend to his gardener, Samwise Gamgee, and one of three hobbits who sailed\
- from Middle-earth to the Uttermost West at the end of the Third Age",
+avengers_characters =
+  [{
+    image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/35/IronMan-EndgameProfile.jpg',
+    name: 'Iron Man',
+    age: 30,
+    weight: 72,
+    history: "Anthony Edward Stark was a billionaire industrialist, a\
+ founding member of the Avengers, and the former CEO of Stark Industries.\
+ A brash but brilliant inventor, Stark was self-described as a genius,\
+ billionaire, playboy, and philanthropist.",
+    user_id: User.first.id
+  },
+   {
+     image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/d/d7/CapAmerica-EndgameProfile.jpg',
+     name: 'Captain America',
+     age: 28,
+     weight: 68,
+     history: "Captain Steven Grant Rogers is a World War II veteran,\
+ a founding member of the Avengers, and Earth's first known superhero.\
+ Rogers grew up suffering from numerous health problems, and upon America's\
+ entry into World War II, he was rejected from serving in the United States\
+ Army despite several attempts to enlist.",
+     user_id: User.first.id
+   },
+   {
+     image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/22/Thor_in_LoveAndThunder_Poster.jpg',
+     name: 'Thor',
+     age: 30,
+     weight: 68,
+     history: "Thor Odinson is the Asgardian God of Thunder, the former\
+ king of Asgard and New Asgard, and a founding member of the Avengers.\
+ When his irresponsible and impetuous behavior reignited an ancient war\
+ between Asgard and Jotunheim, Thor was denied the right to become king,\
+ stripped of his power and hammer Mjølnir, and banished to Earth by Odin.",
+     user_id: User.first.id
+   }]
+
+avengers.characters.create!(avengers_characters)
+
+avgultron = Movie.create!(
+  image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/c7/Avengers_Age_Of_Ultron-poster1.jpg',
+  title: 'Avengers Age Of Ultron',
+  date: DateTime.new(2015, 5, 1, 0, 0, 0, 0),
+  qualification: 3,
   user_id: User.first.id
 )
 
-lodr.characters.create!(
-  image: 'https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg',
-  name: 'Gandalf',
-  age: 75,
-  weight: 68,
-  history: "Gandalf the Grey, later known as Gandalf the White, He joined\
- Thorin II Oakenshield and his company to reclaim the Lonely Mountain from Smaug",
+avgultron.genres << Genre.find_by(name: 'action')
+avgultron.genres << Genre.find_by(name: 'superheros')
+avgultron.genres << Genre.find_by(name: 'science fiction')
+avgultron.genres << Genre.find_by(name: 'adventure')
+
+avgultron.characters << Character.where(name: 'Iron Man')
+avgultron.characters << Character.where(name: 'Captain America')
+avgultron.characters << Character.where(name: 'Thor')
+
+infinity_war = Movie.create!(
+  image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/1/11/Avengers_Infinity_war_poster.jpeg',
+  title: 'Avengers Infinity War',
+  date: DateTime.new(2018, 4, 23, 0, 0, 0, 0),
+  qualification: 4,
   user_id: User.first.id
 )
 
-lodr.characters.create!(
-  image: 'https://static.wikia.nocookie.net/lotr/images/3/33/Legolas_-_in_Two_Towers.PNG',
-  name: 'Legolas',
-  age: 100,
-  weight: 68,
-  history: "Legolas was Mirkwood's prince, a messenger, and a master\
-archer. With his keen eyesight, sensitive hearing, and excellent bowmanship, Legolas was\
-valuable to the Fellowship in their journey across Middle-earth",
+infinity_war.genres << Genre.find_by(name: 'action')
+infinity_war.genres << Genre.find_by(name: 'superheros')
+infinity_war.genres << Genre.find_by(name: 'science fiction')
+
+infinity_war.characters << Character.find_by(name: 'Iron Man')
+infinity_war.characters << Character.find_by(name: 'Captain America')
+infinity_war.characters << Character.find_by(name: 'Thor')
+
+avgegame = Movie.create!(
+  image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/91/Endgame_Poster_2.jpg',
+  title: 'Avengers Endgame',
+  date: DateTime.new(2019, 4, 26, 0, 0, 0, 0),
+  qualification: 3,
   user_id: User.first.id
+)
+
+avgegame.genres << Genre.find_by(name: 'action')
+avgegame.genres << Genre.find_by(name: 'adventure')
+avgegame.genres << Genre.find_by(name: 'superheros')
+avgegame.genres << Genre.find_by(name: 'science fiction')
+avgegame.genres << Genre.find_by(name: 'fantasy')
+
+avgegame.characters << Character.find_by(name: 'Iron Man')
+avgegame.characters << Character.find_by(name: 'Captain America')
+avgegame.characters << Character.find_by(name: 'Thor')
+
+ds = Movie.create!(
+  image: 'https://static.wikia.nocookie.net/marvelmovies/images/8/89/Doctor_Strange_Poster.jpg',
+  title: 'Doctor Strange',
+  date: DateTime.new(2016, 11, 4, 0, 0, 0, 0),
+  qualification: 5,
+  user_id: User.last.id
+)
+
+ds.genres << Genre.find_by(name: 'action')
+ds.genres << Genre.find_by(name: 'science fiction')
+ds.genres << Genre.find_by(name: 'superheros')
+ds.genres << Genre.find_by(name: 'fantasy')
+ds.genres << Genre.find_by(name: 'adventure')
+
+ds.characters << Character.find_by(name: 'Thor')
+ds.characters.create!(
+  [{
+    image: 'https://static.wikia.nocookie.net/marvelmovies/images/7/79/Multiverse_of_Madness_Character_Posters_06.jpg',
+    name: 'Stephen Strange',
+    age: 35,
+    weight: 74,
+    history: "Dr. Stephen Vincent Strange is a world renowned neurosurgeon until\
+ a tragic accident cost him his medical skills and career. Searching for a way to\
+ restore his talents, he traveled the world; until he finally encountered the\
+ Ancient One, the enigmatic teacher who offered to teach him the ways of the mystic arts.",
+    user_id: User.last.id
+  },
+   {
+     image: 'https://static.wikia.nocookie.net/marvelmovies/images/d/dc/Ancient_One.png',
+     name: 'Ancient One',
+     age: 29,
+     weight: 66,
+     history: "The Ancient One was the Sorcerer Supreme, the leader of\
+ the Masters of the Mystic Arts and the mentor of Stephen Strange.\
+ As the Sorcerer Supreme and the leader of the Masters of the Mystic\
+ Arts, the Ancient One was the most powerful member of the order,\
+ possessing tremendously mastery and knowledge of the mystic arts,\
+ which she uses to defend his native reality.",
+     user_id: User.last.id
+   }]
+)
+
+tron = Movie.create!(
+  image: 'https://static.wikia.nocookie.net/tron/images/2/28/Tron_poster1.jpg',
+  title: 'TRON',
+  date: DateTime.new(1982, 7, 9, 0, 0, 0, 0),
+  qualification: 3,
+  user_id: User.last.id
+)
+
+tron.genres << Genre.find_by(name: 'science fiction')
+tron.genres << Genre.find_by(name: 'action')
+tron.genres << Genre.find_by(name: 'adventure')
+tron.genres << Genre.find_by(name: 'fantasy')
+
+tron.characters.create!(
+  [{
+    image: 'https://static.wikia.nocookie.net/tron/images/c/ce/Flynn.jpg',
+    name: 'Kevin Flynn',
+    age: 33,
+    weight: 62,
+    history: "Was a gifted computer programmer who, in 1982, created\
+ some best-selling video games for ENCOM which included Space\
+ Paranoids, Matrix Blaster, Vice Squad, and Light Cycles.\
+ As he developed his games, the code he wrote was stolen by fellow\
+ ENCOM programmer Ed Dillinger. Flynn was fired shortly after Dillinger\
+ became Executive VP. Later, as the VP of Creative\
+ Development, Flynn created TRON ",
+    user_id: User.last.id
+  },
+   {
+     image: 'https://static.wikia.nocookie.net/tron/images/e/ee/Dumont.png',
+     name: 'Dumont',
+     age: 29,
+     weight: 60,
+     history: "Dumont is a Tower Guardian charged with protecting the ENCOM\
+ mainframe's I/O Tower. He resembles his user, Encom founder Walter\
+ Gibbs, and has a similar closeness with Yori that Gibbs had with her\
+ user, Lora Baines.",
+     user_id: User.last.id
+   },
+   {
+     image: 'https://static.wikia.nocookie.net/tron/images/0/0b/Yori3.jpg',
+     name: 'Yori',
+     age: 27,
+     weight: 66,
+     history: "Yori is a program written by Lora Baines and the romantic\
+ interest of Tron. She was in charge of the creation of digital simulations\
+ (such as the Solar Sailer) and involved in the operation of the digitizing laser. ",
+     user_id: User.last.id
+   }]
+)
+
+tlegacy = Movie.create!(
+  image: 'https://static.wikia.nocookie.net/tron/images/4/40/Newpostertron.jpg',
+  title: 'TRON Legacy',
+  date: DateTime.new(2010, 12, 17, 0, 0, 0, 0),
+  qualification: 4,
+  user_id: User.last.id
+)
+
+tlegacy.genres << Genre.find_by(name: 'action')
+tlegacy.genres << Genre.find_by(name: 'science fiction')
+tlegacy.genres << Genre.find_by(name: 'adventure')
+tlegacy.genres << Genre.find_by(name: 'fantasy')
+
+tlegacy.characters << Character.find_by(name: 'Kevin Flynn')
+tlegacy.characters.create!(
+  [{
+    image: 'https://static.wikia.nocookie.net/tron/images/b/bf/Sam_flynn2.jpg',
+    name: 'Sam Flynn',
+    age: 27,
+    weight: 50,
+    history: "Sam was born in 1983[1] to then-famous video game creator\
+ and ENCOM CEO Kevin Flynn and architect Jordan Canas. In 1985, Jordan\
+ was killed in a car accident, leaving Kevin to raise Sam on his own.\
+ Due to Kevin's absences from the real world, a large part of Sam's\
+ childhood was spent in the company of his mother's parents,\
+ who raised him in his place. ",
+    user_id: User.last.id
+  },
+   {
+     image: 'https://static.wikia.nocookie.net/tron/images/6/69/Quorrapromo.png',
+     name: 'Quorra',
+     age: 32,
+     weight: 67,
+     history: "Quorra is the confidante and apprentice of Kevin Flynn.\
+ Flynn has shared his knowledge of the real world with her, and as such,\
+ she longs to experience what lies outside the realm of possibility in\
+ her own world. She is the last known ISO alive and is referred to by\
+ Kevin Flynn as The Miracle. ",
+     user_id: User.last.id
+   }]
 )
 
 sw = Movie.create!(
   image: 'https://static.wikia.nocookie.net/starwars/images/0/06/Star_Wars_Style_A_poster_1977.jpg',
-  title: 'Star wars episode IV',
-  date: DateTime.civil(1977, 5, 25, 0, 0, 0, 0),
+  title: 'Star Wars Episode IV',
+  date: DateTime.new(1977, 5, 25, 0, 0, 0, 0),
   qualification: 5,
   user_id: User.first.id
 )
@@ -143,448 +335,138 @@ sw.genres << Genre.find_by(name: 'fantasy')
 sw.genres << Genre.find_by(name: 'adventure')
 
 sw.characters.create!(
-  image: 'https://static.wikia.nocookie.net/starwars/images/3/3d/LukeSkywalker.png',
-  name: 'Luke Skywalker',
-  age: 30,
-  weight: 78,
-  history: "Luke Skywalker, a Force-sensitive human male, was a\
-legendary Jedi Master who fought in the Galactic Civil War during the reign of the Galactic Empire",
-  user_id: User.first.id
+  [{
+    image: 'https://static.wikia.nocookie.net/starwars/images/3/3d/LukeSkywalker.png',
+    name: 'Luke Skywalker',
+    age: 30,
+    weight: 78,
+    history: "Luke Skywalker, a Force-sensitive human male, was a\
+ legendary Jedi Master who fought in the Galactic Civil War during the reign of the Galactic Empire",
+    user_id: User.first.id
+  },
+   {
+     image: 'https://static.wikia.nocookie.net/starwars/images/f/f1/Leia_Organa_TROS.png',
+     name: 'Leia Organa',
+     age: 31,
+     weight: 67,
+     history: 'Leia Skywalker Organa Solo was a Force-sensitive\
+ human female political and military leader who served in the Alliance to Restore\
+ the Republic during the Imperial Era and the New Republic and Resistance in the\
+ subsequent New Republic Era',
+     user_id: User.first.id
+   },
+   {
+     image: 'https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png',
+     name: 'Anakin Skywalker',
+     age: 32,
+     weight: 71,
+     history: "Anakin Skywalker was a legendary Force-sensitive\
+ His alter ego, Darth Vader, the Dark Lord of the Sith, was created when\
+ Skywalker turned to the dark side of the Force, pledging his allegiance\
+ to the Sith Lord Darth Sidious at the end of the Republic Era",
+     user_id: User.first.id
+   }]
 )
 
-sw.characters.create!(
-  image: 'https://static.wikia.nocookie.net/starwars/images/f/f1/Leia_Organa_TROS.png',
-  name: 'Leia Organa',
-  age: 31,
-  weight: 67,
-  history: 'Leia Skywalker Organa Solo was a Force-sensitive\
-human female political and military leader who served in the Alliance to Restore\
-the Republic during the Imperial Era and the New Republic and Resistance in the\
-subsequent New Republic Era',
-  user_id: User.first.id
-)
-
-sw.characters.create!(
-  image: 'https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png',
-  name: 'Anakin Skywalker',
-  age: 32,
-  weight: 71,
-  history: "Anakin Skywalker was a legendary Force-sensitive\
-His alter ego, Darth Vader, the Dark Lord of the Sith, was created when\
-Skywalker turned to the dark side of the Force, pledging his allegiance\
-to the Sith Lord Darth Sidious at the end of the Republic Era",
-  user_id: User.first.id
-)
-
-bttf = Movie.create!(
-  image: 'https://static.wikia.nocookie.net/bttf/images/9/91/17B978EC-5AFA-4206-9A27-87DB74D6E05D.jpeg',
-  title: 'Back to the future',
-  date: DateTime.civil(1985, 7, 3, 0, 0, 0, 0),
-  qualification: 3,
-  user_id: User.first.id
-)
-
-bttf.genres << Genre.find_by(name: 'science fiction')
-bttf.genres << Genre.find_by(name: 'comedy')
-bttf.genres << Genre.find_by(name: 'romantic')
-bttf.genres << Genre.find_by(name: 'fantasy')
-bttf.genres << Genre.find_by(name: 'adventure')
-
-bttf.characters.create!(
-  image: 'https://static.wikia.nocookie.net/bttf/images/e/e5/Martyvest1955.jpg',
-  name: 'Marty McFly',
-  age: 17,
-  weight: 62,
-  history: "He is the world's second time traveler (after Einstein),\
-the first to travel to the past, and the first human to travel\
-through time. He was also a high school student at Hill Valley\
-High School in 1985. He was best friends with\
- Dr. Emmett Brown, who unveiled his first working invention to him",
-  user_id: User.first.id
-)
-
-bttf.characters.create!(
-  image: 'https://static.wikia.nocookie.net/bttf/images/9/96/Doc_Emmett_Brown.jpg',
-  name: 'Emmett Lathrop',
-  age: 71,
-  weight: 70,
-  history: "Dr. Emmett Lathrop 'Doc' Brown is a resident of Hill\
-Valley, California. He was the inventor of the DeLorean time\
-machine. He is the world's third time traveler\
-(after Einstein and Marty McFly), the second to travel forwards\
-in time (after Einstein), the first human to travel forwards in\
-time, and the second human to travel through time (after Marty)",
-  user_id: User.first.id
-)
-
-bttf.characters.create!(
-  image: 'https://static.wikia.nocookie.net/bttf/images/9/96/Doc_Emmett_Brown.jpg',
-  name: 'Buford Howard Tannen',
-  age: 48,
-  weight: 79,
-  history: "Buford 'Biff' Howard Tannen was born in 1937, to\
-Irving Thomas 'Kid' Tannen and Myra Benson in Hill Valley,\
-California. Kid and Myra got married on December 6, 1936",
-  user_id: User.first.id
-)
-
-terminator = Movie.create!(
-  image: 'https://static.wikia.nocookie.net/terminator/images/c/ca/Terminator_poster.jpg',
-  title: 'The terminator',
-  date: DateTime.civil(1984, 10, 26, 0, 0, 0, 0),
-  qualification: 4,
-  user_id: User.first.id
-)
-
-terminator.genres << Genre.find_by(name: 'action')
-terminator.genres << Genre.find_by(name: 'terror')
-terminator.genres << Genre.find_by(name: 'science fiction')
-terminator.genres << Genre.find_by(name: 'thriller')
-terminator.genres << Genre.find_by(name: 'adventure')
-terminator.genres << Genre.find_by(name: 'fantasy')
-
-terminator.characters.create!(
-  image: 'https://static.wikia.nocookie.net/terminator/images/8/85/Trjs67656.jpg',
-  name: 'T-800',
-  age: 5,
-  weight: 120,
-  history: "T-800, is a type of Terminator mass-produced by\
-Skynet. The T-800 Terminator was Skynet's first cybernetic\
-organism, with living tissue over a hyperalloy\
- endoskeleton. This made it Skynet's first successful\
-Infiltrator unit, capable of infiltrating the Resistance",
-  user_id: User.first.id
-)
-
-terminator.characters.create!(
-  image: 'https://static.wikia.nocookie.net/terminator/images/5/51/Sarah_T2_gun.jpg',
-  name: 'Sarah Connor',
-  age: 27,
-  weight: 56,
-  history: "Is a legendary figure and the mother of\
-John Connor, the leader of the Resistance during the\
-Future War, as well as teaching him in the ways of war.\
-She was born and raised in Los Angeles, California",
-  user_id: User.first.id
-)
-
-terminator.characters.create!(
-  image: 'https://static.wikia.nocookie.net/terminator/images/9/99/MichaelEdwards004.jpg',
-  name: 'John Connor',
-  age: 44,
-  weight: 80,
-  history: "John Connor, the son of Sarah Connor and\
-Kyle Reese, is the leader of the worldwide human\
-Resistance, as well as the more specialised Tech-Com\
-during the War Against the Machines. Skynet, the\
-supercomputer mainframe of the machines, decides that\
-John Connor is the focal point of the rebellion and\
-his termination would end the opposition",
-  user_id: User.first.id
-)
-
-robocop = Movie.create!(
-  image: 'https://static.wikia.nocookie.net/robocop/images/8/8a/RoboCop_psotzer.jpg',
-  title: 'Robocop',
-  date: DateTime.civil(1987, 7, 17, 0, 0, 0, 0),
-  qualification: 3,
-  user_id: User.first.id
-)
-
-robocop.genres << Genre.find_by(name: 'action')
-robocop.genres << Genre.find_by(name: 'science fiction')
-robocop.genres << Genre.find_by(name: 'fantasy')
-robocop.genres << Genre.find_by(name: 'adventure')
-robocop.genres << Genre.find_by(name: 'thriller')
-robocop.genres << Genre.find_by(name: 'crime')
-robocop.genres << Genre.find_by(name: 'superheros')
-
-robocop.characters.create!(
-  image: 'https://static.wikia.nocookie.net/robocop/images/0/09/AlexMurphy.jpg',
-  name: 'Alex James Murphy',
-  age: 35,
-  weight: 69,
-  history: "was a dutiful, upstanding and mild-mannered\
-Detroit Police Officer who was brutally killed in the\
-line of duty by infamous crime boss Clarence Boddicker.\
-Some of his organic components were later integrated\
-into the cybernetic law enforcement entity:\
-RoboCop - OCP Crime Prevention Unit 001, by the\
-mega-corporation Omni Consumer Products",
-  user_id: User.first.id
-)
-
-robocop.characters.create!(
-  image: 'https://static.wikia.nocookie.net/robocop/images/d/dc/ClarenceBoddicker.jpg',
-  name: 'Clarence Boddicker',
-  age: 45,
-  weight: 74,
-  history: "Clarence J. Boddicker was a crime\
-boss and leader of a gang who brutally murdered\
-Officer Alex Murphy, who was rebuilt as RoboCop",
-  user_id: User.first.id
-)
-
-robocop.characters.create!(
-  image: 'https://static.wikia.nocookie.net/robocop/images/7/77/89.png',
-  name: 'Anne Lewis',
-  age: 28,
-  weight: 59,
-  history: "Was a Detroit Police Department officer\
-at the Metro West precinct who was partnered with Alex\
-Murphy at the time of his death. She was partnered with\
-him again after his reconstruction as RoboCop and\
-continued to patrol with him through multiple police\
-strikes, often facing some of Detroit's most fearsome\
-criminals with little or no backup",
-  user_id: User.first.id
-)
-
-jl = Movie.create!(
-  image: 'https://static.wikia.nocookie.net/dccu/images/0/03/Justice_League_theatrical_poster.png',
-  title: 'Justice League',
-  date: DateTime.civil(2017, 11, 17, 0, 0, 0, 0),
-  qualification: 5,
-  user_id: User.last.id
-)
-
-jl.genres << Genre.find_by(name: 'action')
-jl.genres << Genre.find_by(name: 'fantasy')
-jl.genres << Genre.find_by(name: 'superheros')
-jl.genres << Genre.find_by(name: 'science fiction')
-jl.genres << Genre.find_by(name: 'adventure')
-
-jl.characters.create!(
-  image: 'https://static.wikia.nocookie.net/dccu/images/2/2e/Batman_-_Justice_League_-_promo.jpg',
-  name: 'Batman',
-  age: 35,
-  weight: 74,
-  history: "Bruce Wayne is the CEO of Wayne Enterprises\
-and the main vigilante operating in Gotham City,\
-New Jersey known as the Batman. After witnessing the murder\
- of his parents at the hands of a mugger as a child, Bruce\
-waged a war on crime in Gotham City for over 20 years\
-before the Black Zero Event. He also serves as the leader\
-of the Justice League which he co-founded alongside Wonder Woman",
-  user_id: User.last.id
-)
-
-jl.characters.create!(
-  image: 'https://static.wikia.nocookie.net/dccu/images/7/7b/606d5fdb287eda4d84921c698dd79938.jpg',
-  name: 'Superman',
-  age: 29,
-  weight: 66,
-  history: "Kal-El, legally named Clark Joseph Kent, is a\
-superhero known as Superman, the last survivor of Krypton,\
-the host of the Growth Codex, an investigative reporter for\
-the Daily Planet, the fiancé of Lois Lane, and a member and\
-direct inspiration of the Justice League.",
-  user_id: User.last.id
-)
-
-jl.characters.create!(
-  image: 'https://static.wikia.nocookie.net/dccu/images/6/6f/JL_Wonder_Woman.jpg',
-  name: 'Wonder Woman',
-  age: 25,
-  weight: 57,
-  history: "Diana of Themyscira is an Amazon warrior princess\
-and one of the world's first superheroes, known as Wonder Woman.\
-She is the daughter of Queen Hippolyta and Zeus, the king of\
-the Old Gods, as well as a member and co-founder of the Justice League. ",
-  user_id: User.last.id
-)
-
-ryan = Movie.create!(
-  image: 'https://static.wikia.nocookie.net/savingprivateryan/images/8/8c/Sprposter.jpg',
-  title: 'Saving private ryan',
-  date: DateTime.civil(1998, 7, 21, 0, 0, 0, 0),
+dlater = Movie.create!(
+  image: 'https://static.wikia.nocookie.net/28dayslater/images/0/0c/28dayslater_poster-1-.jpg',
+  title: '28 Days Later',
+  date: DateTime.new(2002, 11, 1, 0, 0, 0, 0),
   qualification: 3,
   user_id: User.last.id
 )
 
-ryan.genres << Genre.find_by(name: 'war')
-ryan.genres << Genre.find_by(name: 'action')
-ryan.genres << Genre.find_by(name: 'drama')
+dlater.genres << Genre.find_by(name: 'terror')
+dlater.genres << Genre.find_by(name: 'zombie')
+dlater.genres << Genre.find_by(name: 'post apocalyptic')
+dlater.genres << Genre.find_by(name: 'science fiction')
+dlater.genres << Genre.find_by(name: 'drama')
+dlater.genres << Genre.find_by(name: 'thriller')
 
-ryan.characters.create!(
-  image: 'https://static.wikia.nocookie.net/savingprivateryan/images/9/95/Miller.jpg',
-  name: 'John Miller',
-  age: 33,
-  weight: 62,
-  history: "Captain John H. Miller was a thirty four-year-old American\
-serving in the 2nd Rangers Battalion of the United States Army during\
-World War Two, holding the rank of Captain and the protagonist of the\
-film Saving Private Ryan. He was portrayed by actor Tom Hanks",
-  user_id: User.last.id
+dlater.characters.create!(
+  [{
+    image: 'https://static.wikia.nocookie.net/28dayslater/images/c/c0/Jim_28dl.jpg',
+    name: 'Jim',
+    age: 24,
+    weight: 58,
+    history: "Jim was a bicycle courier for an unknown company. One day,\
+ while he was delivering a package from Farrington to Shaftsbury Avenue,\
+ a car cut across him, causing him to crash his bike and leaving him comatose.\
+ While Jim was unconscious, his parents visited him. As people infected by the\
+ Rage virus overran London, hospital staff emptied out the hospital. Someone\
+ locked the door, slipped a key under it in case Jim woke up, and he was left behind.",
+    user_id: User.last.id
+  },
+   {
+     image: 'https://static.wikia.nocookie.net/28dayslater/images/3/3c/28DaysSelenaEnd.png',
+     name: 'Selena',
+     age: 21,
+     weight: 62,
+     history: "Selena is a survivor of the Rage Virus after it originally decimated\
+ Great Britain. She is the widow of the late David, and the love interest of Jim\
+ and later Clint Harris. She is also one of the Manchester Three.",
+     user_id: User.last.id
+   },
+   {
+     image: 'https://static.wikia.nocookie.net/28dayslater/images/b/b1/Henry_West.png',
+     name: 'Henry West',
+     age: 30,
+     weight: 62,
+     history: "Major Henry West was the commanding officer of a squad of soldiers\
+ who survived the Original Outbreak of the Rage Virus, but was apparently driven\
+ insane. He was mauled to death by the infected Mailer.",
+     user_id: User.last.id
+   }]
 )
 
-ryan.characters.create!(
-  image: 'https://static.wikia.nocookie.net/savingprivateryan/images/2/2a/Reiben.jpg',
-  name: 'Richard Reiben ',
-  age: 29,
-  weight: 60,
-  history: "Private First Class Richard Reiben was a supporting\
-character in the film, Saving Private Ryan. He was an American\
-soldier serving in the 2nd Rangers Battalion of the United States Army\
- and held the rank of Private. He was from Brooklyn, New York City, as\
-shown written proudly on the back of his jacket. While in service, he\
-smoked cigars instead of the standard cigarettes usually given to infantrymen",
-  user_id: User.last.id
-)
-
-ryan.characters.create!(
-  image: 'https://static.wikia.nocookie.net/savingprivateryan/images/a/a7/James_Ryan.jpg',
-  name: 'James Francis Ryan',
-  age: 27,
-  weight: 66,
-  history: "Private First Class James Francis Ryan is an American soldier\
-who served for the 101st Airborne Division in Baker Company, 1st Battalion\
-506th PIR during World War Two. He was the youngest sibling of the Ryan family.\
-His older brothers were Daniel Ryan, Peter Ryan and Sean Ryan and his mother was\
-Margaret Ryan. He has a wife known as Mrs. Ryan. He serves as the titular and\
-pivotal character of the film, Saving Private Ryan.",
-  user_id: User.last.id
-)
-
-rocky = Movie.create!(
-  image: 'https://static.wikia.nocookie.net/rocky/images/1/18/Rocky_poster.jpg',
-  title: 'Rocky',
-  date: DateTime.civil(1976, 12, 3, 0, 0, 0, 0),
+ssense = Movie.create!(
+  image: 'https://static.wikia.nocookie.net/unbreakablemovie/images/6/66/The_sixth_sense.jpg',
+  title: 'The Sixth Sense',
+  date: DateTime.new(1999, 10, 27, 0, 0, 0, 0),
   qualification: 3,
   user_id: User.last.id
 )
 
-rocky.genres << Genre.find_by(name: 'action')
-rocky.genres << Genre.find_by(name: 'romantic')
-rocky.genres << Genre.find_by(name: 'sports')
-rocky.genres << Genre.find_by(name: 'adventure')
-rocky.genres << Genre.find_by(name: 'drama')
+ssense.genres << Genre.find_by(name: 'terror')
+ssense.genres << Genre.find_by(name: 'mistery')
+ssense.genres << Genre.find_by(name: 'thriller')
+ssense.genres << Genre.find_by(name: 'suspense')
+ssense.genres << Genre.find_by(name: 'drama')
 
-rocky.characters.create!(
-  image: 'https://static.wikia.nocookie.net/rocky/images/f/f9/BalboaTitle1982.jpg',
-  name: 'Rocky Balboa',
-  age: 76,
-  weight: 58,
-  history: "Robert Rocky Balboa, Sr. is an American\
-retired heavyweight boxer and former Two-Time Heavyweight Champion. He is\
-famous for his indomitable spirit, extreme tenacity and ferocious body attack.",
-  user_id: User.last.id
-)
-
-rocky.characters.create!(
-  image: 'https://static.wikia.nocookie.net/rocky/images/b/b3/Apollo-creed-profile.jpg',
-  name: 'Apollo Creed',
-  age: 43,
-  weight: 62,
-  history: "Creed is presented as the undisputed heavyweight world champion in Rocky,\
-he was undefeated and had cleared out his division of challengers prior\
-to his fight with Rocky Balboa, ",
-  user_id: User.last.id
-)
-
-rocky.characters.create!(
-  image: 'https://static.wikia.nocookie.net/rocky/images/5/54/Micky.png',
-  name: 'Mickey Goldmill ',
-  age: 76,
-  weight: 62,
-  history: "Michael Mickey Goldmill was the owner of Mighty Mick's Boxing\
-and head Trainer of Rocky Balboa for most of Balboa's career. Goldmill\
-is most likely based on legendary boxing trainer Cus D'amato",
-  user_id: User.last.id
-)
-
-exorcist = Movie.create!(
-  image: 'https://static.wikia.nocookie.net/horrormovies/images/3/36/The_Exorcist.jpg',
-  title: 'The exorcist',
-  date: DateTime.civil(1973, 12, 26, 0, 0, 0, 0),
-  qualification: 4,
-  user_id: User.last.id
-)
-
-exorcist.genres << Genre.find_by(name: 'terror')
-exorcist.genres << Genre.find_by(name: 'suspense')
-exorcist.genres << Genre.find_by(name: 'supernatural')
-
-exorcist.characters.create!(
-  image: 'https://static.wikia.nocookie.net/horrormovies/images/c/c1/Exorcist_Regan.jpg',
-  name: 'Regan Teresa MacNeil',
-  age: 12,
-  weight: 48,
-  history: "She was one of Pazuzu's most important possession victims.\
-He first came to her, when she was 12 years-old, after she had dabbled\
-with a Ouija Board. Regan was possessed by Pazuzu twice",
-  user_id: User.last.id
-)
-
-exorcist.characters.create!(
-  image: 'https://static.wikia.nocookie.net/horrormovies/images/a/aa/Screenshot_2020-08-06_father_merrin_-_Google_Search.png',
-  name: 'Lankester Merrin',
-  age: 79,
-  weight: 50,
-  history: "He is a priest, but he is also an archaeologist and an\
-exorcist, that exorcised before. He is recruited by the church to\
-exorcise Regan with the help of Karras, another priest",
-  user_id: User.last.id
-)
-
-exorcist.characters.create!(
-  image: 'https://static.wikia.nocookie.net/horrormovies/images/1/14/Pazuzu.jpg',
-  name: 'Pazuzu',
-  age: 500,
-  weight: 67,
-  history: "Pazuzu is depicted as being a very high-tier demon that\
-serves as king of the demons of the wind. To attack his enemies,\
-Pazuzu typically employs not only physical pain but also psychological\
-attacks crafted from Pazuzu's reading of the victim's past",
-  user_id: User.last.id
-)
-
-usoldier = Movie.create!(
-  image: 'https://static.wikia.nocookie.net/universalsoldier/images/6/62/Universal_soldier_poster.jpeg',
-  title: 'Universal Soldier',
-  date: DateTime.civil(1992, 7, 10, 0, 0, 0, 0),
-  qualification: 5,
-  user_id: User.last.id
-)
-
-usoldier.genres << Genre.find_by(name: 'action')
-usoldier.genres << Genre.find_by(name: 'adventure')
-usoldier.genres << Genre.find_by(name: 'martial arts')
-usoldier.genres << Genre.find_by(name: 'science fiction')
-usoldier.genres << Genre.find_by(name: 'drama')
-usoldier.genres << Genre.find_by(name: 'thriller')
-
-usoldier.characters.create!(
-  image: 'https://static.wikia.nocookie.net/universalsoldier/images/0/09/Luc_Deveraux1.jpg',
-  name: 'Luc Deveraux',
-  age: 29,
-  weight: 63,
-  history: " Luc becomes a UniSol after being reanimated in a secret government\
-project along with other previously dead soldiers.",
-  user_id: User.last.id
-)
-
-usoldier.characters.create!(
-  image: 'https://static.wikia.nocookie.net/universalsoldier/images/e/ed/Andrew_scott.png',
-  name: 'Andrew Scott ',
-  age: 27,
-  weight: 60,
-  history: "When the army finds the aftermath of the Scott massacre his body is\
-packed in ice and sent off for a secret project. His inciden is covered up and\
-word is sent home that Scott is missing in action. What used to be Sgt.\
-Andrew Scott has become GR-13 of the Universal Soldier program",
-  user_id: User.last.id
-)
-
-usoldier.characters.create!(
-  image: 'https://static.wikia.nocookie.net/universalsoldier/images/1/15/2.jpg',
-  name: 'Veronica Roberts',
-  age: 24,
-  weight: 55,
-  history: "The character was featured as a TV Journalist that later\
-assisted in helping Luc Deveraux avoid capture by a private division\
-of the government that were creating super-soldiers called, UniSols\
-or simply Universal Soldiers.She would also help him in his journey\
-to return home while evading his superior Sgt. Andrew Scott",
-  user_id: User.last.id
+ssense.characters.create!(
+  [{
+    image: 'https://static.wikia.nocookie.net/unbreakablemovie/images/5/59/F68055971111e177f5116fd2f348d3e2.jpg',
+    name: 'Malcolm Crowe ',
+    age: 34,
+    weight: 58,
+    history: "The next fall, Crowe begins working with another patient,\
+ nine-year-old Cole Sear, whose case is similar to Vincent's.\
+ Crowe becomes dedicated to the boy, though he is haunted by doubts\
+ over his ability to help him after his failure with Vincent.",
+    user_id: User.last.id
+  },
+   {
+     image: 'https://static.wikia.nocookie.net/unbreakablemovie/images/9/98/The-sixth-sense-1.jpg',
+     name: 'Cole Sear',
+     age: 10,
+     weight: 35,
+     history: "Cole is an 11-year-old who has a sixth sense, a sense\
+ in which he actually can see the ghosts of the undead, who are always\
+ coming to him but is too afraid to approach them. Dr. Malcolm Crowe, a\
+ child psychologist in Philadelphia, who comes across his case, decides\
+ to help him, due to the fact Cole is going through a similar situation\
+ as a previous patient of his, named Vincent.",
+     user_id: User.last.id
+   },
+   {
+     image: 'https://static.wikia.nocookie.net/unbreakablemovie/images/1/1c/Profile-ezone-original.jpg',
+     name: 'Lynn Sear',
+     age: 30,
+     weight: 62,
+     history: "Lynn was the mother of Cole. On the way home Lynn was in\
+ a line because there was a crash, Cole confesses his secret to his\
+ mother, Lynn. Although his mother at first does not believe\
+ him, he proves his ability to her, and Lynn tearfully accepts the truth.",
+     user_id: User.last.id
+   }]
 )
