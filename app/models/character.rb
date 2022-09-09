@@ -3,7 +3,7 @@
 class Character < ApplicationRecord
   belongs_to :user
 
-  has_many :movie_characters
+  has_many :movie_characters, dependent: :destroy
   has_many :movies, through: :movie_characters
 
   validates :image,
@@ -37,4 +37,11 @@ class Character < ApplicationRecord
             length: { minimum: 20,
                       maximum: 2000,
                       message: 'Minimum 20 and maximum 2000 characters' }
+
+  scope :by_name, ->(name) { where('lower(name) LIKE ?', "%#{sanitize_sql_like(name.downcase)}%") }
+  scope :by_age, ->(age) { where(age:) }
+  scope :by_weight, ->(weight) { where(weight:) }
+  scope :by_movie, lambda { |movie|
+    joins(:movies).where('lower(movies.title) LIKE ?', "%#{sanitize_sql_like(movie.downcase)}%")
+  }
 end
