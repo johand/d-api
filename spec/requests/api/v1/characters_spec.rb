@@ -94,6 +94,13 @@ RSpec.describe 'Api::V1::Characters', type: :request do
     end
   end
 
+  describe 'GET /edit' do
+    it 'returns http success' do
+      get "/api/v1/characters/#{character.id}/edit"
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET /show' do
     it 'returns http success' do
       get "/api/v1/characters/#{character.id}"
