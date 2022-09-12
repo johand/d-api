@@ -42,6 +42,6 @@ class Character < ApplicationRecord
   scope :by_age, ->(age) { where(age:) }
   scope :by_weight, ->(weight) { where(weight:) }
   scope :by_movie, lambda { |movie|
-    joins(:movies).where('lower(movies.title) LIKE ?', "%#{sanitize_sql_like(movie.downcase)}%")
+    joins(:movies).where('lower(movies.title) LIKE ?', "%#{sanitize_sql_like(movie.downcase)}%").distinct
   }
 end
