@@ -1,0 +1,39 @@
+* Instructions
+
+- Configure ENV variables in the file =.env=
+- Make sure you have up and running postgres and redis
+- Execute the following
+
+#+BEGIN_SRC bash
+  bundle install
+  rails db:create db:migrate db:seed
+  rspec
+#+END_SRC
+
+- Install the =foreman= gem and run the app with
+
+#+BEGIN_SRC bash
+  foreman start -f Procfile.dev
+#+END_SRC
+
+- Endpoints documentation located in =swagger= folder
+
+* Docker Instructions
+
+- Run the container
+
+#+BEGIN_SRC bash
+  docker-compose up
+#+END_SRC
+
+- Run migrations and seeds
+
+#+BEGIN_SRC bash
+  docker-compose run api rails db:migrate db:seed
+#+END_SRC
+
+- Running tests
+
+#+BEGIN_SRC bash
+  docker-compose -f docker-compose.test.yml run --rm api rspec
+#+END_SRC

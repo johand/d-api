@@ -1,0 +1,449 @@
+---
+openapi: 3.0.1
+info:
+  title: D-API V1
+  version: v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: apiKey
+      name: Authorization
+      scheme: bearer
+      bearerFormat: JWT
+      in: header
+paths:
+  "/api/v1/characters":
+    parameters:
+    - name: page
+      in: query
+      description: Page number
+      schema:
+        type: string
+    - name: name
+      in: query
+      description: Find character by name
+      schema:
+        type: string
+    - name: age
+      in: query
+      description: Find character by age
+      schema:
+        type: string
+    - name: weight
+      in: query
+      description: Find character by weight
+      schema:
+        type: string
+    - name: movies
+      in: query
+      description: Find character by movie
+      schema:
+        type: string
+    get:
+      summary: list characters
+      tags:
+      - Characters
+      responses:
+        '200':
+          description: successful
+  "/api/v1/characters/create":
+    post:
+      summary: create character
+      tags:
+      - Characters
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                character:
+                  type: object
+                  properties:
+                    image:
+                      type: string
+                    name:
+                      type: string
+                    age:
+                      type: integer
+                    weight:
+                      type: integer
+                    history:
+                      type: string
+              required:
+              - image
+              - name
+              - age
+              - weight
+              - history
+  "/api/v1/characters/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    put:
+      summary: update character
+      tags:
+      - Characters
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                character:
+                  type: object
+                  properties:
+                    image:
+                      type: string
+                    name:
+                      type: string
+                    age:
+                      type: integer
+                    weight:
+                      type: integer
+                    history:
+                      type: string
+    get:
+      summary: show character
+      tags:
+      - Characters
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete character
+      tags:
+      - Characters
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/genres":
+    parameters:
+    - name: page
+      in: query
+      description: Page number
+      schema:
+        type: string
+    get:
+      summary: list genres
+      tags:
+      - Genres
+      responses:
+        '200':
+          description: successful
+  "/api/v1/genres/create":
+    post:
+      summary: create genre
+      tags:
+      - Genres
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                genre:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    image:
+                      type: string
+              required:
+              - name
+              - image
+  "/api/v1/genres/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    put:
+      summary: update genre
+      tags:
+      - Genres
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                genre:
+                  type: object
+                  properties:
+                    image:
+                      type: string
+                    name:
+                      type: string
+    get:
+      summary: show genre
+      tags:
+      - Genres
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete genre
+      tags:
+      - Genres
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/movies":
+    parameters:
+    - name: page
+      in: query
+      description: Page number
+      schema:
+        type: string
+    - name: title
+      in: query
+      description: Find movie by title
+      schema:
+        type: string
+    - name: genre
+      in: query
+      description: Find movie by genre
+      schema:
+        type: string
+    - name: order
+      in: query
+      description: ASC or DESC
+      schema:
+        type: string
+    get:
+      summary: list movies
+      tags:
+      - Movies
+      responses:
+        '200':
+          description: successful
+  "/api/v1/movies/create":
+    post:
+      summary: create movie
+      tags:
+      - Movies
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                movie:
+                  type: object
+                  properties:
+                    image:
+                      type: string
+                    title:
+                      type: string
+                    date:
+                      type: string
+                    qualification:
+                      type: integer
+              required:
+              - image
+              - title
+              - date
+              - qualification
+  "/api/v1/movies/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    put:
+      summary: update movie
+      tags:
+      - Movies
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                movie:
+                  type: object
+                  properties:
+                    image:
+                      type: string
+                    title:
+                      type: string
+                    date:
+                      type: string
+                    qualifitacion:
+                      type: integer
+    get:
+      summary: show movie
+      tags:
+      - Movies
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete movie
+      tags:
+      - Movies
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/register":
+    post:
+      summary: create registration
+      tags:
+      - Registration
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+              required:
+              - username
+              - email
+              - password
+              - password_confirmation
+    put:
+      summary: update registration
+      tags:
+      - Registration
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                    current_password:
+                      type: string
+              required:
+              - current_password
+    delete:
+      summary: delete registration
+      tags:
+      - Registration
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/login":
+    post:
+      summary: create session
+      tags:
+      - Login
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - email
+              - password
+  "/api/v1/users/logout":
+    delete:
+      summary: delete session
+      tags:
+      - Login
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
